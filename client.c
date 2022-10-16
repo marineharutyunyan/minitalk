@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maharuty <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/16 13:26:36 by maharuty          #+#    #+#             */
+/*   Updated: 2022/10/16 13:26:38 by maharuty         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include <stdio.h>
 #include <stdio.h>
 #include <unistd.h>
 
-int ft_atoi(char *str) {
+int	ft_atoi(char *str)
+{
 	int	num;
 	int	i;
 
@@ -26,9 +39,7 @@ int	main(int argc, char **argv)
 	int		j;
 
 	pid = ft_atoi(argv[1]);
-	printf("pid is %d\n", pid);
 	message = argv[2];
-	printf("message is %s\n", message);
 	i = 0;
 	while (message[i])
 	{
@@ -36,19 +47,12 @@ int	main(int argc, char **argv)
 		while (++j <= 7)
 		{
 			if ((message[i] >> (7 - j) & 1) == 0)
-			{
 				kill(pid, SIGUSR1);
-				printf("0");
-			}
 			else
-			{
 				kill(pid, SIGUSR2);
-				printf("1");
-			}
 			usleep(100);
 		}
 		i++;
-	printf("\n");
 	}
 	return (0);
 }
